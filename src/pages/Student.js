@@ -3,14 +3,15 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
 import Swal from 'sweetalert2';
-
+import {environment} from '../env.js';
 class Student extends Component {
     state = {
         students: [],
         loading: true,
     }
     async componentDidMount() {
-        const res = await axios.get('http://localhost:8000/api/list-student');
+        console.log(environment.BaseUrl);
+        const res = await axios.get(environment.BaseUrl+'list-student');
         if (res.data.status === 200) {
             console.log('students', res);
             this.setState({
